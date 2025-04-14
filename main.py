@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 # .env 로드
-load_dotenv()
+# load_dotenv()
 
 app = FastAPI()
 
