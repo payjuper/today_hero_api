@@ -25,7 +25,7 @@ def get_random_hero():
     response = client.chat.completions.create(
         model=deployment_name,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.9,
+        temperature=1.2,
         max_tokens=200
     )
 
