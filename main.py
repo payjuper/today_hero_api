@@ -1,10 +1,25 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware  # ✅ CORS 미들웨어 추가
 from openai import AzureOpenAI
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 app = FastAPI()
+
+# ✅ CORS 설정 추가
+origins = [
+    "http://localhost:3000",  # 프론트엔드 로컬 주소 허용
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,       # 위 origin들만 허용
+    allow_credentials=True,
+    allow_methods=["*"],         # GET, POST 등 모든 메서드 허용
+    allow_headers=["*"],         # 모든 헤더 허용
+)
 
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
